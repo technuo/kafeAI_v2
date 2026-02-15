@@ -1,19 +1,19 @@
 # KafeAI v2 - AI COO for Smart Restaurant Management
 
-KafeAI 是一个面向餐饮管理者的**智能决策中枢**。系统通过多 Agent 协同工作，整合历史销售数据、实时天气预报、库存状态及市场活动，为餐厅提供全方位的经营建议与自动化执行能力。
+KafeAI is an **intelligent decision-making hub** designed for restaurant managers. By leveraging a multi-agent orchestration system, it integrates historical sales data, real-time weather forecasts, inventory statuses, and marketing activities to provide comprehensive operational insights and automated execution.
 
-V2 版本实装了全新的 **Streamlit 可视化管理中心**，实现了从 CLI 到 GUI 的全面转型。
-
----
-
-## 🚀 项目定位 (Project Orientation)
-- **目标用户**：欧洲（瑞典为主）及北美餐饮管理者。
-- **核心价值**：从“事后查看报表”转变为“事前预测决策”与“自动化运营”。
-- **交互体验**：极简且富有高级感的 GUI 系统，深度集成 LangGraph “人类在环 (HITL)” 审核机制。
+Version V2 introduces a brand-new **Streamlit Visualization Management Center**, marking a complete transformation from CLI to GUI.
 
 ---
 
-## 🏗️ 核心架构 (Architecture Diagram)
+## 🚀 Project Orientation
+- **Target Users**: Restaurant managers in Europe (primarily Sweden) and North America.
+- **Core Value**: Shifting from "post-event report analysis" to "pre-event predictive decision-making" and "automated operations."
+- **Interaction Experience**: A minimalist and premium GUI system, deeply integrated with the LangGraph "Human-in-the-Loop (HITL)" review mechanism.
+
+---
+
+## 🏗️ Architecture Diagram
 
 ```mermaid
 graph TD
@@ -48,61 +48,61 @@ graph TD
 
 ---
 
-## 🏁 快速开始 (Quick Start)
+## 🏁 Quick Start
 
-### 1. 环境准备 (Prerequisites)
+### 1. Prerequisites
 - **Python**: 3.10+
 - **API Keys**: Google Gemini API Key, Weather API Key (OpenWeatherMap).
-- **安装依赖**:
+- **Install Dependencies**:
   ```bash
-  # 安装后端依赖
+  # Install backend dependencies
   pip install -r kafeAI/requirements.txt
-  # 安装前端依赖
+  # Install frontend dependencies
   pip install -r kafeAI/frontend/requirements_frontend.txt
   ```
 
-### 2. 配置文件
-系统内置可视化配置页面，您也可以手动在 `./kafeAI/` 目录下创建 `.env`：
+### 2. Configuration
+The system includes a built-in visualization configuration page. Alternatively, you can manually create a `.env` file in the `./kafeAI/` directory:
 ```env
 GOOGLE_API_KEY=your_gemini_key
 WEATHER_API_KEY=your_weather_key
 CITY=Sundsvall
 ```
 
-### 3. 运行可视化中心
+### 3. Run the Visualization Center
 ```bash
 cd kafeAI/frontend
 python -m streamlit run app.py --server.port 8502
 ```
-访问 `http://localhost:8502` 即可进入管理后台。
+Navigate to `http://localhost:8502` to access the management dashboard.
 
 ---
 
-## 🌟 核心功能模块
+## 🌟 Core Modules
 
-| 模块 | 功能说明 |
+| Module | Description |
 |------|----------|
-| **AI 对话中心** | 与 AI 运营助手实时对话，流式输出 Agent 思考过程。 |
-| **决策审核 (HITL)** | 视觉化呈现 Agent 建议与海报模板，支持一键审批或修改指令。 |
-| **数据透视 (Analytics)** | 实时销售趋势图、品类占比统计及动态库存预警。 |
-| **文件实验室** | 侧边栏集成在线编辑器，可直接修改 `Menu.md`、`stock.json` 及上传日报。 |
-| **健康监测** | 实时追踪各 Agent 节点运行状态及服务器硬件资源占用。 |
+| **AI Chat Center** | Real-time interaction with an AI operations assistant, featuring streaming output of the agent's reasoning process. |
+| **Decision Approval (HITL)** | Visual representation of agent suggestions and poster templates, supporting one-click approval or instruction overrides. |
+| **Analytics Pivot** | Real-time sales trends, itemized category statistics, and dynamic inventory shortage alerts. |
+| **File Lab** | Integrated online editor in the sidebar for direct modification of `Menu.md`, `stock.json`, and daily report uploads. |
+| **Health Monitor** | Real-time tracking of Agent node execution status and server hardware resource utilization. |
 
 ---
 
-## 📂 目录结构说明
+## 📂 Directory Structure
 
-- **`kafeAI/manageragent.py`**: 后端核心，定义了 LangGraph 工作流。
-- **`kafeAI/frontend/`**: Streamlit 前端源码目录。
-- **`Menu.md / stock.json`**: 餐厅“数字孪生”的核心数据库。
-- **`memory.json`**: 基于 RAG 的强化学习记忆库。
-- **`daily_reports/ / decision_history/`**: 存储历史报表与决策证据链。
+- **`kafeAI/manageragent.py`**: Backend core defining the LangGraph workflow.
+- **`kafeAI/frontend/`**: Source code directory for the Streamlit frontend.
+- **`Menu.md / stock.json`**: Core database for the restaurant's "Digital Twin."
+- **`memory.json`**: RAG-based reinforcement learning memory system.
+- **`daily_reports/ / decision_history/`**: Storage for historical reports and decision evidence chains.
 
 ---
 
-## ⚖️ GDPR & 合规性
-- **数据最小化**：仅处理订单 ID、时间、金额及菜品，不涉及个人敏感信息 (PII)。
-- **完全本地化**：默认采用本地文件存储，关键业务数据不离开用户环境。
+## ⚖️ GDPR & Compliance
+- **Data Minimization**: Only handles order IDs, timestamps, amounts, and dish names. No Personally Identifiable Information (PII) is processed.
+- **Full Localization**: Default local file storage ensures critical business data never leaves the user's controlled environment.
 
 ---
 
