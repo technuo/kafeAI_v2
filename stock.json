@@ -1,0 +1,163 @@
+{
+    "inventory": [
+        {
+            "item": "nötkött",
+            "quantity": 20,
+            "unit": "kg"
+        },
+        {
+            "item": "burger bröd",
+            "quantity": 1,
+            "unit": "katon"
+        },
+        {
+            "item": "sallad",
+            "quantity": 31,
+            "unit": "st"
+        },
+        {
+            "item": "tomat",
+            "quantity": 2,
+            "unit": "katon"
+        },
+        {
+            "item": "gurka",
+            "quantity": 1,
+            "unit": "katon"
+        },
+        {
+            "item": "blomkål",
+            "quantity": 1,
+            "unit": "katon"
+        },
+        {
+            "item": "apelsin",
+            "quantity": 4,
+            "unit": "st"
+        },
+        {
+            "item": "citron",
+            "quantity": 4,
+            "unit": "st"
+        },
+        {
+            "item": "aioli",
+            "quantity": 1,
+            "unit": "hink"
+        },
+        {
+            "item": "bbq sås",
+            "quantity": 1,
+            "unit": "hink"
+        },
+        {
+            "item": "rödpesto",
+            "quantity": 1,
+            "unit": "hink"
+        },
+        {
+            "item": "pommes fries",
+            "quantity": 2,
+            "unit": "katon"
+        },
+        {
+            "item": "红薯条",
+            "quantity": 1,
+            "unit": "katon"
+        },
+        {
+            "item": "虾",
+            "quantity": 2,
+            "unit": "hink"
+        },
+        {
+            "item": "ciabata",
+            "quantity": 2,
+            "unit": "katon"
+        },
+        {
+            "item": "pankaka",
+            "quantity": 1,
+            "unit": "katon"
+        },
+        {
+            "item": "Crispy chicken",
+            "quantity": 2,
+            "unit": "katon"
+        },
+        {
+            "item": "bamboo beef",
+            "quantity": 1,
+            "unit": "hink"
+        },
+        {
+            "item": "菠萝鸡块",
+            "quantity": 1,
+            "unit": "hink"
+        },
+        {
+            "item": "Smoothie",
+            "quantity": 20,
+            "unit": "cup"
+        },
+        {
+            "item": "Bubble Tea",
+            "quantity": 20,
+            "unit": "cup"
+        },
+        {
+            "item": "Chailatte",
+            "quantity": 20,
+            "unit": "cup"
+        },
+        {
+            "item": "Mackalatte",
+            "quantity": 20,
+            "unit": "cup"
+        },
+        {
+            "item": "expresso",
+            "quantity": 20,
+            "unit": "cup"
+        },
+        {
+            "item": "ice coffee",
+            "quantity": 20,
+            "unit": "cup"
+        },
+        {
+            "item": "läsk",
+            "quantity": 50,
+            "unit": "st"
+        },
+        {
+            "item": "beans",
+            "quantity": 10,
+            "unit": "kg"
+        },
+        {
+            "item": "milk",
+            "quantity": 30,
+            "unit": "katon"
+        },
+        {
+            "item": "syrups",
+            "quantity": 15,
+            "unit": "st"
+        },
+        {
+            "item": "takeaway boxes",
+            "quantity": 2,
+            "unit": "katon"
+        },
+        {
+            "item": "paper cups",
+            "quantity": 4,
+            "unit": "katon"
+        }
+    ],
+    "metadata": {
+        "last_updated": "2026-02-14 20:38:34",
+        "source": "Menu.md"
+    }
+}

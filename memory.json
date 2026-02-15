@@ -1,0 +1,15 @@
+{
+  "episodes": [
+    {
+      "date": "2026-02-15",
+      "prediction_summary": "Predictor: Forecast for tomorrow in Sundsvall: Sunny, -13.9°C. Rain Chance: 0%. | No major local events scheduled.",
+      "decision": "**To:** kafeAI Management  \n**From:** COO  \n**Subject:** Operational Strategy – 2026-02-15\n\nThe data is clear. We are facing a \"Cold-Sun\" Sunday. In Sweden, -13.9°C with 0% rain is a double-edged sword: the sun will lure locals out for walks, but the sub-zero temperature makes the *Uteservering* (terrace) a frozen wasteland. Our strategy must pivot to **Indoor Yield Maximization.**\n\n### 1. Analysis: Weather vs. Event Impact\n*   **Weather Impact:** The 0% rain chance is our primary driver. Sun in...",
+      "status": "PENDING",
+      "bias_correction": ""
+    }
+  ],
+  "global_bias": {
+    "weather_sensitivity": 1.0,
+    "event_optimism": 1.0
+  }
+}

@@ -1,0 +1,51 @@
+{
+    "report_info": {
+        "report_type": "Z-DAGRAPPORT",
+        "loop_number": 2441,
+        "company_name": "Tant Anki & Fröken Sara AB",
+        "terminal": "ANKERPOS SERVER",
+        "period_start": "2026-02-09 19:26:45",
+        "period_end": "2026-02-10 20:17:25"
+    },
+    "sales_summary": {
+        "total_gross": 3273.00,
+        "total_net": 2922.30,
+        "total_vat": 350.70,
+        "vat_details": [
+            {
+                "rate": "12%",
+                "vat_amount": 350.70,
+                "total": 3273.00
+            }
+        ]
+    },
+    "sales_by_category": [
+        {
+            "category": "MAT (食物)",
+            "count": 21,
+            "amount": 2549.00
+        },
+        {
+            "category": "LÄSK / VATTEN (冷饮)",
+            "count": 6,
+            "amount": 182.00
+        },
+        {
+            "category": "VARM DRYCK (热饮)",
+            "count": 3,
+            "amount": 154.00
+        },
+        {
+            "category": "BAKVERK (甜点)",
+            "count": 8,
+            "amount": 388.00
+        }
+    ],
+    "payment_methods": {
+        "card (KONTOKORT FAST)": 3273.00,
+        "total_transactions": 26
+    },
+    "performance_metrics": {
+        "average_purchase_per_customer": 125.88
+    }
+}
