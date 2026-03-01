@@ -48,33 +48,41 @@ graph TD
 
 ---
 
-## 🏁 Quick Start
+## 🏁 Quick Start (One-Click Setup)
+
+KafeAI now features an interactive **Setup Bot** to automate environment configuration and dependency management.
 
 ### 1. Prerequisites
-- **Python**: 3.10+
-- **API Keys**: Google Gemini API Key, Weather API Key (OpenWeatherMap).
-- **Install Dependencies**:
-  ```bash
-  # Install backend dependencies
-  pip install -r kafeAI/requirements.txt
-  # Install frontend dependencies
-  pip install -r kafeAI/frontend/requirements_frontend.txt
-  ```
+- **Python**: 3.9+ installed and added to PATH.
+- **Git**: Installed (optional, for cloning).
 
-### 2. Configuration
-The system includes a built-in visualization configuration page. Alternatively, you can manually create a `.env` file in the `./kafeAI/` directory:
-```env
-GOOGLE_API_KEY=your_gemini_key
-WEATHER_API_KEY=your_weather_key
-CITY=Sundsvall
+### 2. Installation
+Simply run the setup script for your operating system:
+
+**Windows:**
+```powershell
+./setup.bat
 ```
 
+**Linux / macOS:**
+```bash
+chmod +x setup.sh
+./setup.sh
+```
+
+The Setup Bot will guide you through:
+- 📦 Installing all Python dependencies and Playwright drivers.
+- ⚙️ Configuring your `GEMINI_API_KEY` and WhatsApp number.
+- 📱 Linking your WhatsApp account via QR code.
+
 ### 3. Run the Visualization Center
+After setup is complete, you can launch the dashboard manually if needed:
 ```bash
 cd kafeAI/frontend
 python -m streamlit run app.py --server.port 8502
 ```
 Navigate to `http://localhost:8502` to access the management dashboard.
+
 
 ---
 
@@ -92,11 +100,14 @@ Navigate to `http://localhost:8502` to access the management dashboard.
 
 ## 📂 Directory Structure
 
+- **`setup.bat / setup.sh`**: OS-specific entry points for the Setup Bot.
+- **`setup/`**: Contains core logic for environmental checks, `.env` generation, and WhatsApp linking.
 - **`kafeAI/manageragent.py`**: Backend core defining the LangGraph workflow.
 - **`kafeAI/frontend/`**: Source code directory for the Streamlit frontend.
 - **`Menu.md / stock.json`**: Core database for the restaurant's "Digital Twin."
 - **`memory.json`**: RAG-based reinforcement learning memory system.
 - **`daily_reports/ / decision_history/`**: Storage for historical reports and decision evidence chains.
+
 
 ---
 
