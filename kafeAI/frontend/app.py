@@ -12,7 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__)))) 
 
 import streamlit as st
 from config import APP_NAME, APP_SUBTITLE, APP_VERSION, COLORS, LOGO_PATH
-from theme import apply_theme
+from theme import apply_theme, render_steam
 
 # Tab modules
 from tabs import chat, decisions, analytics, monitor
@@ -36,21 +36,20 @@ apply_theme()
 def render_sidebar():
     """Render the sidebar with navigation and management panels"""
     with st.sidebar:
-        # Logo & branding
+        # Logo & branding with steam animation
         if os.path.exists(LOGO_PATH):
             st.image(LOGO_PATH, width=160)
         else:
             st.markdown(f'<div class="kafeai-title">☕ {APP_NAME}</div>', unsafe_allow_html=True)
 
+        render_steam()
         st.caption(f"v{APP_VERSION} — Local Deployment")
         st.divider()
 
         # Sidebar sections as expandable panels
-        # file_manager.render() has its own header/layout
         file_manager.render()
         st.divider()
 
-        # settings.render() uses expanders, so we cannot wrap it in an expander
         settings.render()
         st.divider()
 
@@ -61,9 +60,9 @@ def render_sidebar():
 # ── Main Content ───────────────────────────────────────────────
 def render_main():
     """Render the main content area with tabs"""
-    # Header
+    # Header with brand identity
     st.markdown(f"""
-    <div class="kafeai-header">
+    <div class="kafeai-header kafeai-glow fade-in">
         <div>
             <div class="kafeai-title">☕ {APP_NAME}</div>
             <div class="kafeai-subtitle">{APP_SUBTITLE}</div>
@@ -73,10 +72,10 @@ def render_main():
 
     # Main tabs
     tab_chat, tab_decisions, tab_analytics, tab_monitor = st.tabs([
-        "💬 AI Chat",
-        "🧠 Decisions",
-        "📊 Analytics",
-        "🖥️ Monitor",
+        "💬 AI CHAT",
+        "🧠 DECISIONS",
+        "📊 ANALYTICS",
+        "🖥️ MONITOR",
     ])
 
     with tab_chat:

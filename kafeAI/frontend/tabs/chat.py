@@ -51,7 +51,14 @@ def _run_phase1(issue: str):
                     ctx = content["context"][-1] if content["context"] else ""
                     st.session_state.messages.append({
                         "role": "assistant",
-                        "content": f"**{_get_agent_label(node_name)}**: {ctx[:500]}",
+                        "content": f"**{_get_agent_label(node_name)}**: {ctx[:1000]}",
+                        "node": node_name,
+                    })
+                elif "decision" in content:
+                    decision = content["decision"]
+                    st.session_state.messages.append({
+                        "role": "assistant",
+                        "content": f"**{_get_agent_label(node_name)}**:\n\n{decision}",
                         "node": node_name,
                     })
 

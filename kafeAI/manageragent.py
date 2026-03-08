@@ -30,6 +30,8 @@ class AgentState(TypedDict):
     promotion_data: dict
     poster_path: str
     target_date: str # NEW: For tracking prediction date in RL
+    routing_mode: str # Added: "full" or "single"
+    target_node: str  # Added: The node to jump to
 
 # 3. 初始化 Gemini (使用你之前验证成功的名称)
 llm = ChatGoogleGenerativeAI(model="gemini-flash-latest", temperature=0)
@@ -281,36 +283,102 @@ def order_execution_agent(state: AgentState):
     except Exception as e:
         return {"context": [f"Order Execution Error: {str(e)}"]}
 
+# --- On-demand Routing & Quick Response ---
+
+def router_node(state: AgentState):
+    """
+    Analyzes the 'issue' (user input) for @mentions.
+    If @AgentName is found, it sets routing_mode to 'single'.
+    """
+    import re
+    issue = state.get("issue", "")
+    
+    # Mapping of user mentions to actual graph node IDs
+    agent_map = {
+        "weather": "predictor",
+        "stock": "stock_manager",
+        "inventory": "stock_manager",
+        "finance": "post_mortem",
+        "report": "post_mortem",
+        "forecast": "forecast",
+        "pricing": "pricing",
+        "creative": "creative",
+        "poster": "creative"
+    }
+    
+    match = re.search(r"@(\w+)", issue)
+    if match:
+        name = match.group(1).lower()
+        if name in agent_map:
+            target = agent_map[name]
+            print(f"[Router]: Detected @{name}, routing to {target} (Single Mode)")
+            return {
+                "routing_mode": "single",
+                "target_node": target
+            }
+            
+    print("[Router]: No @mention detected, proceeding with Full Report Mode")
+    return {
+        "routing_mode": "full",
+        "target_node": "post_mortem"
+    }
+
+def quick_manager(state: AgentState):
+    """A wrapper for manager_agent that bypasses HITL for quick questions."""
+    # We can reuse the same manager logic, or adjust the prompt for 'Quick Answer' mode
+    res = manager_agent(state)
+    return res
+
+def route_to_target(state: AgentState):
+    """Entry point routing logic."""
+    return state.get("target_node", "post_mortem")
+
+def next_step_logic(state: AgentState, current_node: str, default_next: str):
+    """Decides whether to continue the full chain or jump to mini_manager."""
+    if state.get("routing_mode") == "single":
+        return "quick_manager"
+    return default_next
+
 # --- 构建工作流图 ---
 
 
 
 workflow = StateGraph(AgentState)
 
+# Nodes
+workflow.add_node("router", router_node) # Entry point
 workflow.add_node("post_mortem", lambda state: post_mortem_agent(state, llm))
 workflow.add_node("forecast", lambda state: forecasting_agent(state, llm))
 workflow.add_node("predictor", prediction_agent)
 workflow.add_node("stock_manager", inventory_agent)
 workflow.add_node("pricing", dynamic_pricing_agent)
 workflow.add_node("creative", poster_agent)
-workflow.add_node("manager", manager_agent)
+workflow.add_node("manager", manager_agent) # Full report manager (HITL)
+workflow.add_node("quick_manager", quick_manager) # Quick response manager (Auto)
 workflow.add_node("executor", order_execution_agent)
 
-# 设置工作流路径
-workflow.set_entry_point("post_mortem")
-workflow.add_edge("post_mortem", "forecast")
-workflow.add_edge("forecast", "predictor")
-workflow.add_edge("predictor", "stock_manager")
-workflow.add_edge("stock_manager", "pricing")
-workflow.add_edge("pricing", "creative")
-workflow.add_edge("creative", "manager")
+# Routing - Entry
+workflow.set_entry_point("router")
+workflow.add_conditional_edges("router", route_to_target)
+
+# Full mode chain with conditional exit for single mode
+workflow.add_conditional_edges("post_mortem", lambda s: next_step_logic(s, "post_mortem", "forecast"))
+workflow.add_conditional_edges("forecast", lambda s: next_step_logic(s, "forecast", "predictor"))
+workflow.add_conditional_edges("predictor", lambda s: next_step_logic(s, "predictor", "stock_manager"))
+workflow.add_conditional_edges("stock_manager", lambda s: next_step_logic(s, "stock_manager", "pricing"))
+workflow.add_conditional_edges("pricing", lambda s: next_step_logic(s, "pricing", "creative"))
+workflow.add_conditional_edges("creative", lambda s: next_step_logic(s, "creative", "manager"))
+
+# Terminating the paths
 workflow.add_edge("manager", "executor")
 workflow.add_edge("executor", END)
+workflow.add_edge("quick_manager", END)
 
 # 初始化内存保存器
 checkpointer = MemorySaver()
 
 # 编译图形，在 manager 节点前中断以进行 HITL 审批
+# 注意：quick_manager 不在控制列表中，从而实现“零碎问题”快速响应
 app = workflow.compile(
     checkpointer=checkpointer,
     interrupt_before=["manager"]

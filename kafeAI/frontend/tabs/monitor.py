@@ -7,7 +7,7 @@ import datetime
 import logging
 import io
 from config import COLORS, AGENT_NODES
-from theme import render_status_badge
+from theme import render_status_badge, render_agent_card
 
 # Lazy import psutil
 try:
@@ -77,13 +77,7 @@ def render():
                 status_text = "Idle"
 
             badge = render_status_badge(status_text.lower() if status_text.lower() in ("success", "error", "warning", "running", "pending") else status)
-            st.markdown(f"""
-            <div class="kafeai-card" style="text-align:center; padding:12px;">
-                <div style="font-size:1.5rem;">{node['icon']}</div>
-                <div style="font-weight:600; font-size:0.85rem; margin:4px 0;">{node['label']}</div>
-                {badge}
-            </div>
-            """, unsafe_allow_html=True)
+            render_agent_card(node['icon'], node['label'], badge)
 
     st.divider()
 

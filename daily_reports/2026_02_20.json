@@ -1,0 +1,64 @@
+{
+    "report_info": {
+        "report_type": "Z-DAGRAPPORT",
+        "loop_number": 2450,
+        "company_name": "Tant Anki & Fröken Sara AB",
+        "terminal": "ANKERPOS SERVER",
+        "date": "2026-02-20",
+        "day_of_week": "Friday",
+        "period_start": "2026-02-19 20:01:30",
+        "period_end": "2026-02-20 19:45:12"
+    },
+    "sales_summary": {
+        "total_gross": 5256.00,
+        "total_net": 4692.86,
+        "total_vat": 563.14,
+        "vat_details": [
+            {
+                "rate": "25%",
+                "vat_amount": 35.60,
+                "total": 178.00,
+                "label": "Alcoholic Beverages"
+            },
+            {
+                "rate": "12%",
+                "vat_amount": 527.54,
+                "total": 5078.00,
+                "label": "Food and Non-Alcoholic"
+            }
+        ]
+    },
+    "sales_by_category": [
+        {
+            "category": "MAT (食物)",
+            "count": 35,
+            "amount": 4321.00
+        },
+        {
+            "category": "VIN (葡萄酒)",
+            "count": 2,
+            "amount": 178.00
+        },
+        {
+            "category": "BAKVERK (甜点)",
+            "count": 6,
+            "amount": 310.00
+        },
+        {
+            "category": "LÄSK / VARM DRYCK (饮品)",
+            "count": 10,
+            "amount": 447.00,
+            "note": "Estimated based on remainder of gross sales"
+        }
+    ],
+    "payment_methods": {
+        "card": 5256.00,
+        "total_transactions": 24
+    },
+    "performance_metrics": {
+        "average_purchase_per_customer": 219.00,
+        "traffic_status": "Low",
+        "aov_status": "Ultra-High",
+        "context": "Extreme cold Friday, high social/dinner engagement"
+    }
+}

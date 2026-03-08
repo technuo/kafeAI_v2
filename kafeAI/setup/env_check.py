@@ -13,7 +13,9 @@ def check_python_version():
 
 def install_dependencies():
     """Install requirements from requirements.txt."""
-    req_file = os.path.join(os.path.dirname(os.path.dirname(__file__)), "requirements.txt")
+    base_dir = os.path.dirname(os.path.dirname(__file__))
+    req_file = os.path.join(base_dir, "requirements.txt")
+    frontend_req_file = os.path.join(base_dir, "frontend", "requirements_frontend.txt")
     
     if not os.path.exists(req_file):
         print("⚠️ Warning: requirements.txt not found. Skipping dependency installation.")
@@ -22,6 +24,9 @@ def install_dependencies():
     print("\n📦 Installing Python dependencies...")
     try:
         subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", req_file])
+        if os.path.exists(frontend_req_file):
+            print("\n📦 Installing Frontend dependencies...")
+            subprocess.check_call([sys.executable, "-m", "pip", "install", "-r", frontend_req_file])
         print("✅ Dependencies installed successfully.")
     except subprocess.CalledProcessError as e:
         print(f"❌ Error during dependency installation: {e}")

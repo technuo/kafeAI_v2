@@ -34,7 +34,14 @@ echo.
 echo [!] Setup successful! Starting kafeAI...
 echo.
 
-:: Try to launch manageragent.py
-python "%~dp0manageragent.py"
+:: Launch Full Stack (Frontend + WhatsApp Bot + Tunnel)
+cd /d "%~dp0.."
+if exist run_all.bat (
+    call run_all.bat
+) else (
+    echo [!] run_all.bat not found. Launching standalone frontend...
+    cd /d "%~dp0frontend"
+    python -m streamlit run app.py --server.port 8501
+)
 
 pause

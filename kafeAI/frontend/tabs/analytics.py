@@ -97,24 +97,28 @@ def _render_sales_trend(all_data: list):
         x=dates, y=gross,
         name="Gross Sales",
         mode="lines+markers",
-        line=dict(color=COLORS["primary_green"], width=3),
+        line=dict(color=COLORS["smart_amber"], width=3),
         marker=dict(size=8),
+        fill="tozeroy",
+        fillcolor="rgba(180, 230, 142, 0.08)",
     ))
     fig.add_trace(go.Scatter(
         x=dates, y=net,
         name="Net Sales",
         mode="lines+markers",
-        line=dict(color=COLORS["accent_pink"], width=2, dash="dot"),
+        line=dict(color=COLORS["paper_cream"], width=2, dash="dot"),
         marker=dict(size=6),
     ))
 
     fig.update_layout(
-        title="Sales Trend",
+        title="SALES TREND",
         xaxis_title="Date",
         yaxis_title="SEK",
-        template="plotly_white",
+        template="plotly_dark",
         height=400,
-        font=dict(family="Inter"),
+        font=dict(family="Inter", color=COLORS["text_primary"]),
+        paper_bgcolor="rgba(0,0,0,0)",
+        plot_bgcolor="rgba(10,37,25,0.6)",
         legend=dict(orientation="h", yanchor="bottom", y=1.02),
     )
     st.plotly_chart(fig, use_container_width=True)
@@ -150,24 +154,26 @@ def _render_category_breakdown(all_data: list):
         fig.add_trace(go.Bar(
             x=names, y=amounts,
             name="Revenue (SEK)",
-            marker_color=COLORS["primary_green"],
+            marker_color=COLORS["smart_amber"],
             text=[f"{a:,.0f}" for a in amounts],
             textposition="auto",
         ))
         fig.add_trace(go.Bar(
             x=names, y=counts,
             name="Items Sold",
-            marker_color=COLORS["accent_pink"],
+            marker_color=COLORS["forest_green"],
             text=counts,
             textposition="auto",
             yaxis="y2",
         ))
 
         fig.update_layout(
-            title=f"Category Breakdown — {latest.get('_date', '')}",
-            template="plotly_white",
+            title=f"CATEGORY BREAKDOWN — {latest.get('_date', '')}",
+            template="plotly_dark",
             height=400,
-            font=dict(family="Inter"),
+            font=dict(family="Inter", color=COLORS["text_primary"]),
+            paper_bgcolor="rgba(0,0,0,0)",
+            plot_bgcolor="rgba(10,37,25,0.6)",
             barmode="group",
             yaxis=dict(title="Revenue (SEK)"),
             yaxis2=dict(title="Items Sold", overlaying="y", side="right"),

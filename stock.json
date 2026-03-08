@@ -7,12 +7,12 @@
         },
         {
             "item": "burger bröd",
-            "quantity": 1,
+            "quantity": 3,
             "unit": "katon"
         },
         {
             "item": "sallad",
-            "quantity": 31,
+            "quantity": 51,
             "unit": "st"
         },
         {
@@ -137,12 +137,12 @@
         },
         {
             "item": "milk",
-            "quantity": 30,
+            "quantity": 45,
             "unit": "katon"
         },
         {
             "item": "syrups",
-            "quantity": 15,
+            "quantity": 55,
             "unit": "st"
         },
         {
@@ -152,12 +152,12 @@
         },
         {
             "item": "paper cups",
-            "quantity": 4,
+            "quantity": 104,
             "unit": "katon"
         }
     ],
     "metadata": {
-        "last_updated": "2026-02-14 20:38:34",
+        "last_updated": "2026-03-03 23:58:11",
         "source": "Menu.md"
     }
 }
