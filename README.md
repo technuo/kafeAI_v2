@@ -4,6 +4,10 @@ KafeAI is an **intelligent decision-making hub** designed for restaurant manager
 
 Version V2 introduces a brand-new **Streamlit Visualization Management Center**, marking a complete transformation from CLI to GUI.
 
+**📚 Documentation**: [Complete Guide](./docs/README.md) | [Quick Start](./docs/02-getting-started.md) | [Architecture](./docs/03-architecture.md)
+
+---
+
 ---
 
 ## 🚀 Project Orientation
